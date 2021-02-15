@@ -1,18 +1,20 @@
 import {NgModule} from '@angular/core'
-import {BrowserModule} from '@angular/platform-browser'
 import {StoreDevtoolsModule} from '@ngrx/store-devtools'
+import {HttpClientModule} from '@angular/common/http'
+import {BrowserModule} from '@angular/platform-browser'
 import {StoreModule} from '@ngrx/store'
 
+import {environment} from '../environments/environment'
 import {AppRoutingModule} from './app-routing.module'
 import {AppComponent} from './app.component'
 import {AuthModule} from './auth/auth.module'
-import {environment} from '../environments/environment'
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     AuthModule,
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
