@@ -5,18 +5,23 @@ import {EffectsModule} from '@ngrx/effects'
 import {CommonModule} from '@angular/common'
 import {StoreModule} from '@ngrx/store'
 
+import {reducers} from './store/reducers'
 import {BackendErrorMessagesModule} from '../modules/backendErrorMessages/backendErrorMessages.module'
 import {RegisterComponent} from './components/register/register.component'
 import {RegisterEffect} from './store/effects/register.effect'
 import {AuthService} from './services/auth.service'
-import {reducers} from './store/reducers'
 import {PersistenceService} from '../shared/services/persistence.service'
+import {LoginComponent} from './components/login/login.component'
 import {LoginEffect} from './store/effects/login.effect'
 
 const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
   },
 ]
 
@@ -29,7 +34,7 @@ const routes: Routes = [
     EffectsModule.forFeature([RegisterEffect, LoginEffect]),
     BackendErrorMessagesModule,
   ],
-  declarations: [RegisterComponent],
+  declarations: [RegisterComponent, LoginComponent],
   providers: [AuthService, PersistenceService],
 })
 export class AuthModule {}
