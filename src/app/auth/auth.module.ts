@@ -6,7 +6,7 @@ import {CommonModule} from '@angular/common'
 import {StoreModule} from '@ngrx/store'
 
 import {reducers} from './store/reducers'
-import {BackendErrorMessagesModule} from '../modules/backendErrorMessages/backendErrorMessages.module'
+import {BackendErrorMessagesModule} from '../shared/modules/backendErrorMessages/backendErrorMessages.module'
 import {RegisterComponent} from './components/register/register.component'
 import {RegisterEffect} from './store/effects/register.effect'
 import {AuthService} from './services/auth.service'
