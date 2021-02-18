@@ -8,6 +8,7 @@ import {reducers} from './store/reducers'
 import {FeedServices} from './services/feed.services'
 import {RouterModule} from '@angular/router'
 import {ErrorMessageModule} from '../errorMessage/errorMessage.module'
+import {LoadingModule} from '../loading/loading.module'
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import {ErrorMessageModule} from '../errorMessage/errorMessage.module'
     StoreModule.forFeature('feed', reducers),
     RouterModule,
     ErrorMessageModule,
+    LoadingModule,
   ],
   declarations: [FeedComponent],
   exports: [FeedComponent],

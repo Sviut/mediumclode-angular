@@ -3,8 +3,11 @@ import {select, Store} from '@ngrx/store'
 import {getFeedAction} from '../store/actions/getFeed.action'
 import {Observable} from 'rxjs'
 import {GetFeedResponseInterface} from '../types/getFeedResponse.interface'
-import {isLoggedInSelector} from '../../../../auth/store/selectors'
-import {errorSelector, feedSelector} from '../store/selectors'
+import {
+  errorSelector,
+  feedSelector,
+  isSubmittingSelector,
+} from '../store/selectors'
 
 @Component({
   selector: 'app-feed',
@@ -26,7 +29,7 @@ export class FeedComponent implements OnInit {
   }
 
   initializeValues(): void {
-    this.isLoading$ = this.store.pipe(select(isLoggedInSelector))
+    this.isLoading$ = this.store.pipe(select(isSubmittingSelector))
     this.error$ = this.store.pipe(select(errorSelector))
     this.feed$ = this.store.pipe(select(feedSelector))
   }
