@@ -1,5 +1,5 @@
-import {PopularTagTypeType} from '../../../types/popularTagType.type'
+import {PopularTagType} from '../../../types/popularTagType'
 
 export interface GetPopularTagsResponseInterface {
-  tags: PopularTagTypeType[]
+  tags: PopularTagType[]
 }
