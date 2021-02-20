@@ -5,7 +5,7 @@ import {
   getArticleAction,
   getArticleFailureAction,
   getArticleSuccessAction,
-} from './actions/articleFeed.action'
+} from './actions/getArticle.action'
 
 const initialState: ArticleStateInterface = {
   isLoading: false,

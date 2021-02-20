@@ -7,7 +7,7 @@ import {
   getArticleAction,
   getArticleFailureAction,
   getArticleSuccessAction,
-} from '../actions/articleFeed.action'
+} from '../actions/getArticle.action'
 import {ArticleInterface} from '../../../shared/types/article.interface'
 
 @Injectable()
