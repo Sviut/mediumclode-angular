@@ -9,6 +9,7 @@ import {RouterModule} from '@angular/router'
 import {ErrorMessageModule} from '../shared/modules/errorMessage/errorMessage.module'
 import {LoadingModule} from '../shared/modules/loading/loading.module'
 import {ArticleComponent} from './components/article.component'
+import {TagListModule} from '../shared/modules/tagList/tag-list.module'
 
 const routes = [
   {
@@ -26,6 +27,7 @@ const routes = [
     ErrorMessageModule,
     LoadingModule,
     RouterModule.forChild(routes),
+    TagListModule,
   ],
   declarations: [ArticleComponent],
   exports: [],
