@@ -1,15 +1,16 @@
 import {NgModule} from '@angular/core'
 import {CommonModule} from '@angular/common'
 import {EffectsModule} from '@ngrx/effects'
-import {GetArticleEffect} from './store/effects/articleFeed.effect'
+import {GetArticleEffect} from './store/effects/getArticle.effect'
 import {StoreModule} from '@ngrx/store'
 import {reducers} from './store/reducers'
-import {ArticleServices} from '../shared/services/article.services'
+import {ArticleServices as SharedArticleServices} from '../shared/services/article.services'
 import {RouterModule} from '@angular/router'
 import {ErrorMessageModule} from '../shared/modules/errorMessage/errorMessage.module'
 import {LoadingModule} from '../shared/modules/loading/loading.module'
 import {ArticleComponent} from './components/article.component'
 import {TagListModule} from '../shared/modules/tagList/tag-list.module'
+import {ArticleServices} from './services/article.services'
 
 const routes = [
   {
@@ -31,6 +32,6 @@ const routes = [
   ],
   declarations: [ArticleComponent],
   exports: [],
-  providers: [ArticleServices],
+  providers: [SharedArticleServices, ArticleServices],
 })
 export class ArticleModule {}
