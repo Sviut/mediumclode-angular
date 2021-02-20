@@ -3,12 +3,14 @@ import {select, Store} from '@ngrx/store'
 import {getArticleAction} from '../store/actions/articleFeed.action'
 import {ActivatedRoute} from '@angular/router'
 import {ArticleInterface} from '../../shared/types/article.interface'
-import {Observable, Subscription} from 'rxjs'
+import {combineLatest, Observable, Subscription} from 'rxjs'
 import {
   articleSelector,
   errorSelector,
   isLoadingSelector,
 } from '../store/selectors'
+import {currentUserSelector} from '../../auth/store/selectors'
+import {map} from 'rxjs/operators'
 
 @Component({
   selector: 'app-article',
@@ -20,6 +22,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
   articleSubscription: Subscription
   isLoading$: Observable<boolean>
   error$: Observable<string | null>
+  isAuthor$: Observable<boolean>
 
   constructor(private store: Store, private route: ActivatedRoute) {}
 
@@ -37,6 +40,17 @@ export class ArticleComponent implements OnInit, OnDestroy {
     this.slug = this.route.snapshot.paramMap.get('slug')
     this.isLoading$ = this.store.pipe(select(isLoadingSelector))
     this.error$ = this.store.pipe(select(errorSelector))
+    this.isAuthor$ = combineLatest(
+      this.store.pipe(select(articleSelector)),
+      this.store.pipe(select(currentUserSelector))
+    ).pipe(
+      map(([article, currentsUser]) => {
+        if (!article || !currentsUser) {
+          return false
+        }
+        return currentsUser.username === article.author.username
+      })
+    )
   }
 
   initializeListeners(): void {
