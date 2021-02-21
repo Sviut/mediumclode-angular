@@ -12,6 +12,7 @@ import {
 import {filter, map} from 'rxjs/operators'
 import {ArticleInterface} from '../../shared/types/article.interface'
 import {getArticleAction} from '../store/actions/getArticle.action'
+import {updateArticleAction} from '../store/actions/editArticle.action'
 
 @Component({
   selector: 'app-edit-article',
@@ -32,7 +33,7 @@ export class EditArticleComponent implements OnInit {
   }
 
   onSubmit(articleInput: ArticleInputInterface): void {
-    // this.store.dispatch(editArticleAction({articleInput}))
+    this.store.dispatch(updateArticleAction({articleInput, slug: this.slug}))
   }
 
   initializeValues(): void {
