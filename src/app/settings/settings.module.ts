@@ -2,6 +2,8 @@ import {NgModule} from '@angular/core'
 import {CommonModule} from '@angular/common'
 import {SettingsComponent} from './components/settings.component'
 import {RouterModule} from '@angular/router'
+import {StoreModule} from '@ngrx/store'
+import {reducers} from './store/reducers'
 
 const routes = [
   {
@@ -11,7 +13,11 @@ const routes = [
 ]
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(routes)],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    StoreModule.forFeature('settings', reducers),
+  ],
   declarations: [SettingsComponent],
 })
 export class SettingsModule {}
