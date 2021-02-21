@@ -59,4 +59,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
       password: '',
     })
   }
+
+  submit(): void {}
+
+  logout(): void {}
 }

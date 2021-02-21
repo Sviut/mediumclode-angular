@@ -1,1 +1,73 @@
-settings
+<div *ngIf="currentUser" class="settings-page">
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 col-xs-12">
+        <h1 class="text-xs-center">Settings</h1>
+        <app-backend-error-messages
+          *ngIf="backendErrors$ | async"
+          [backendErrors]="backendErrors$ | async"
+        ></app-backend-error-messages>
+
+        <form (ngSubmit)="submit()" [formGroup]="form">
+          <fieldset>
+            <fieldset class="form-group">
+              <input
+                class="form-control form-control-lg"
+                formControlName="image"
+                placeholder="URL of profile picture"
+                type="text"
+              />
+            </fieldset>
+
+            <fieldset class="form-group">
+              <input
+                class="form-control form-control-lg"
+                formControlName="username"
+                placeholder="Username"
+                type="text"
+              />
+            </fieldset>
+
+            <fieldset class="form-group">
+              <textarea
+                class="form-control form-control-lg"
+                formControlName="bio"
+                placeholder="Short bio about you"
+                type="text"
+              ></textarea>
+            </fieldset>
+
+            <fieldset class="form-group">
+              <input
+                class="form-control form-control-lg"
+                formControlName="email"
+                placeholder="Email"
+                type="text"
+              />
+            </fieldset>
+
+            <fieldset class="form-group">
+              <input
+                class="form-control form-control-lg"
+                formControlName="password"
+                placeholder="Password"
+                type="text"
+              />
+            </fieldset>
+            <button
+              [disabled]="form.invalid || (isSubmitting$ | async)"
+              class="btn btn-lg btn-primary pull-xs-right"
+              type="submit"
+            >
+              Update settings
+            </button>
+          </fieldset>
+        </form>
+        <hr />
+        <button (click)="logout()" class="btn btn-outline-danger">
+          Or click here to logout
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
