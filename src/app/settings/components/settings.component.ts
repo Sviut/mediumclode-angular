@@ -10,6 +10,9 @@ import {
   isSubmittingSelector,
   validationErrorsSelector,
 } from '../store/selectors'
+import {updateCurrentUserAction} from '../../auth/store/actions/updateCurrentUser.action'
+import {CurrentUserInputInterface} from '../../shared/types/currentUserInput.interface'
+import {logoutAction} from '../../auth/store/actions/sync.acion'
 
 @Component({
   selector: 'app-settings',
@@ -60,7 +63,15 @@ export class SettingsComponent implements OnInit, OnDestroy {
     })
   }
 
-  submit(): void {}
+  submit(): void {
+    const currentUserInput: CurrentUserInputInterface = {
+      ...this.currentUser,
+      ...this.form.value,
+    }
+    this.store.dispatch(updateCurrentUserAction({currentUserInput}))
+  }
 
-  logout(): void {}
+  logout(): void {
+    this.store.dispatch(logoutAction())
+  }
 }
