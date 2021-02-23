@@ -5,6 +5,8 @@ import {RouterModule} from '@angular/router'
 import {UserProfileService} from './services/userProfile.service'
 import {EffectsModule} from '@ngrx/effects'
 import {GetUserProfileEffect} from './store/effects/getUserProfile.effect'
+import {StoreModule} from '@ngrx/store'
+import {reducers} from './store/reducer'
 
 const routes = [
   {
@@ -22,6 +24,7 @@ const routes = [
     CommonModule,
     RouterModule.forChild(routes),
     EffectsModule.forFeature([GetUserProfileEffect]),
+    StoreModule.forFeature('userProfile', reducers),
   ],
   declarations: [UserProfileComponent],
   providers: [UserProfileService],
