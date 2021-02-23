@@ -23,9 +23,10 @@ const userProfileReducer = createReducer(
   ),
   on(
     getUserProfileSuccessAction,
-    (state): UserProfileStateInterface => ({
+    (state, action): UserProfileStateInterface => ({
       ...state,
       isLoading: false,
+      data: action.userProfile,
     })
   ),
   on(

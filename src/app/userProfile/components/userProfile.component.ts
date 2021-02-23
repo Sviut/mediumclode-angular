@@ -23,7 +23,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   userProfileSubscription: Subscription
   slug: string
   apiUrl: string
-  isCurrentUserProfile: Observable<boolean>
+  isCurrentUserProfile$: Observable<boolean>
 
   constructor(
     private store: Store,
@@ -48,8 +48,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     this.error$ = this.store.pipe(select(errorSelector))
     this.apiUrl = isFavorites
       ? `/articles?favorited=${this.slug}`
-      : `/articles/author=${this.slug}`
-    this.isCurrentUserProfile = combineLatest(
+      : `/articles?author=${this.slug}`
+    this.isCurrentUserProfile$ = combineLatest(
       this.store.pipe(select(currentUserSelector)),
       this.store.pipe(select(userProfileSelector))
     ).pipe(
@@ -66,6 +66,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   initializeListeners(): void {
     this.userProfileSubscription = this.store
       .pipe(select(userProfileSelector))
-      .subscribe((userProfile) => (this.userProfile = userProfile))
+      .subscribe((userProfile) => {
+        this.userProfile = userProfile
+      })
   }
 }
