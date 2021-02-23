@@ -4,7 +4,7 @@ import {
   getUserProfileAction,
   getUserProfileFailureAction,
   getUserProfileSuccessAction,
-} from './getUserProfile.action'
+} from './actions/getUserProfile.action'
 
 const initialState: UserProfileStateInterface = {
   data: null,

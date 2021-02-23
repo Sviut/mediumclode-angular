@@ -6,7 +6,7 @@ import {
   getUserProfileAction,
   getUserProfileFailureAction,
   getUserProfileSuccessAction,
-} from '../getUserProfile.action'
+} from '../actions/getUserProfile.action'
 import {UserProfileService} from '../../services/userProfile.service'
 import {ProfileInterface} from '../../../shared/types/profile.interface'
 
