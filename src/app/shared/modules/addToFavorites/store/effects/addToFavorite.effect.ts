@@ -18,7 +18,7 @@ export class AddToFavoriteEffect {
       switchMap(({isFavorited, slug}) => {
         const article$ = isFavorited
           ? this.addToFavoritesService.removeFavorites(slug)
-          : this.addToFavoritesService.removeFavorites(slug)
+          : this.addToFavoritesService.addToFavorites(slug)
 
         return article$.pipe(
           map((article: ArticleInterface) => {
