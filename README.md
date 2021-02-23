@@ -1,4 +1,4 @@
-# MediumcloneAngular with RSJS [LIVE DEMO](https://sviut.github.io/mediumclode-angular/)
+# MediumcloneAngular with RXJS [LIVE DEMO](https://sviut.github.io/mediumclode-angular/)
 
 ## Development server
 
