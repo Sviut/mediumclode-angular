@@ -1,36 +1,36 @@
-<app-loading *ngIf="isLoading$ | async"></app-loading>
-<app-error-message *ngIf="error$ | async"></app-error-message>
+<app-loading *ngIf='isLoading$ | async'></app-loading>
+<app-error-message *ngIf='error$ | async'></app-error-message>
 
-<div *ngIf="feed$ | async">
-  <div *ngFor="let article of (feed$ | async).articles" class="article-preview">
-    <div class="article-meta">
+<div *ngIf='feed$ | async'>
+  <div *ngFor='let article of (feed$ | async).articles' class='article-preview'>
+    <div class='article-meta'>
       <a [routerLink]="['/profiles', article.author.username]">
-        <img [src]="article.author.image" />
+        <img [src]='article.author.image' />
       </a>
-      <div class="info">
+      <div class='info'>
         <a [routerLink]="['/profiles', article.author.username]">
           {{ article.author.username }}
         </a>
-        <span class="date">{{ article.createdAt }}</span>
+        <span class='date'>{{ article.createdAt }}</span>
       </div>
-      <div class="pull-xs-right">
+      <div class='pull-xs-right'>
         <app-add-to-favorites
-          [articleSlug]="article.slug"
-          [favoritesCount]="article.favoritesCount"
-          [isFasorited]="article.favorited"
+          [articleSlug]='article.slug'
+          [favoritesCountProp]='article.favoritesCount'
+          [isFavoritedProp]='article.favorited'
         ></app-add-to-favorites>
       </div>
     </div>
-    <a [routerLink]="['/articles', article.slug]" class="preview-link">
+    <a [routerLink]="['/articles', article.slug]" class='preview-link'>
       <h1>{{ article.title }}</h1>
       <p>{{ article.description }}</p>
-      <app-tag-list [tags]="article.tagList"></app-tag-list>
+      <app-tag-list [tags]='article.tagList'></app-tag-list>
     </a>
   </div>
   <app-pagination
-    [currentPage]="currentPage"
-    [limit]="limit"
-    [total]="(feed$ | async).articlesCount"
-    [url]="baseUrl"
+    [currentPage]='currentPage'
+    [limit]='limit'
+    [total]='(feed$ | async).articlesCount'
+    [url]='baseUrl'
   ></app-pagination>
 </div>
