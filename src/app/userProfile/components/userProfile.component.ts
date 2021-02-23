@@ -42,13 +42,9 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   }
 
   initializeValues(): void {
-    const isFavorites = this.router.url.includes('favorites')
     this.slug = this.route.snapshot.paramMap.get('slug')
     this.isLoading$ = this.store.pipe(select(isLoadingSelector))
     this.error$ = this.store.pipe(select(errorSelector))
-    this.apiUrl = isFavorites
-      ? `/articles?favorited=${this.slug}`
-      : `/articles?author=${this.slug}`
     this.isCurrentUserProfile$ = combineLatest(
       this.store.pipe(select(currentUserSelector)),
       this.store.pipe(select(userProfileSelector))
@@ -57,10 +53,22 @@ export class UserProfileComponent implements OnInit, OnDestroy {
         return currentUser.username === userProfile.username
       })
     )
+
+    this.route.params.subscribe((params) => {
+      this.slug = params.slug
+      this.fetchData()
+    })
   }
 
   fetchData(): void {
     this.store.dispatch(getUserProfileAction({slug: this.slug}))
+  }
+
+  getApiUrl(): string {
+    const isFavorites = this.router.url.includes('favorites')
+    return isFavorites
+      ? `/articles?favorited=${this.slug}`
+      : `/articles?author=${this.slug}`
   }
 
   initializeListeners(): void {

@@ -27,6 +27,7 @@
           <ul class="nav nav-pills outline-active">
             <li class="nav-item">
               <a
+                [routerLinkActiveOptions]="{exact: true}"
                 [routerLink]="['/profiles', userProfile.username]"
                 class="nav-link"
                 routerLinkActive="active"
@@ -37,6 +38,7 @@
 
             <li class="nav-item">
               <a
+                [routerLinkActiveOptions]="{exact: true}"
                 [routerLink]="['/profiles', userProfile.username, 'favorites']"
                 class="nav-link"
                 routerLinkActive="active"
@@ -46,7 +48,7 @@
             </li>
           </ul>
         </div>
-        <app-feed [apiUrl]="apiUrl"></app-feed>
+        <app-feed [apiUrl]="getApiUrl()"></app-feed>
       </div>
     </div>
   </div>
